@@ -2,20 +2,40 @@
     <div class="main">  	
 		<div class="background">
     </div>
-    <form>
+    <form class="formPart">
         <p>Courses Chantier</p>
 
         <label for="mail">Email</label>
-        <input id="username" type="text" placeholder="exemple@exemple.com">
+        <input id="username" v-model="userInfo.email"  type="text" placeholder="exemple@exemple.com">
 
         <label for="password">Mot de Passe</label>
-        <input id="password" type="password" placeholder="*******">
+        <input id="password" v-model="userInfo.password"  type="password" placeholder="*******">
 
-        <button>Valider</button>
+        <button @click.prevent="submitLogin">Valider</button>
     </form>
 	</div>
 </template>
-
+<script>
+export default{
+  data(){
+    return {
+      userInfo: {
+        email: '',
+        password:'',
+      }
+    }
+  },
+  methods: {
+    submitLogin () {
+      const log = this.userInfo
+      this.$auth.loginWith('local',{
+      data:log
+  	})
+     .then(() => {this.$router.push('/connected-section');})
+    }
+  }
+}
+</script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
 
@@ -46,7 +66,7 @@ body{
     border-radius: 50%;
 }
 
-form{
+.formPart{
     height: 340px;
     min-width: 190px;
 	    width: 18vw;
@@ -61,14 +81,13 @@ form{
 	
 }
 
-form *{
+.formPart *{
     font-family: 'Oswald', sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
-form p{
+.formPart p{
     font-size: calc(14px + (26 - 14) * ((75vw - 300px) / (1600 - 300)));
     font-weight: 500;
     line-height: 42px;

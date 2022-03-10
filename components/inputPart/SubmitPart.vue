@@ -17,7 +17,18 @@
     </form>
 	</div>
 </template>
-
+<script>
+export default{
+  data(){
+    return {
+      userInfo: {
+        email: '',
+        password:''
+      }
+    }
+  }
+}
+</script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
 
