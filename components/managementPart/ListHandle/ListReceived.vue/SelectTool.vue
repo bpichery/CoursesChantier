@@ -12,7 +12,7 @@ class='qt-list'
 type="number" 
        min="1" max="20" placeholder="0" required>
        <button class='bt-list' @click.prevent="addList">Ajouter à la liste</button>
-        <button class='bt-list' @click.prevent="validateList">Valider la liste</button>
+        <button v-if='selectedTool.id!== undefined' class='bt-list' @click.prevent="validateList">Valider la liste</button>
         </div>
     <section
       v-for="result in filteredList" id="flex-wrapper"
@@ -38,6 +38,7 @@ export default{
         },
 data(){
     return{
+        'isAdded': false,
         'results': '',
         'quantity': null,
         'searchTool':'',
@@ -71,13 +72,6 @@ created(){
   });
 
 }, methods:{
-          handleList(){
-            for(let i = 0; i<this.finalList.length; i++){
-              
-              // eslint-disable-next-line no-console
-              console.log(this.finalList[i].quantity)
-            }
-          },
           handleSelect (element) {
             this.selectedTool = element
             },
@@ -86,18 +80,27 @@ created(){
               alert(`Merci d'indiquer la quantité souhaitée avant d'ajouter l'élément à votre liste (comprise entre 1 et 20)`)
             }
             else{
-              const listModel= {
+          const listModel= {
           'quantity': null,
-          'content': {}}
-             listModel.quantity = this.quantity
+          'content': {}
+          }
+              listModel.quantity = this.quantity
               listModel.content=this.selectedTool
               this.finalList.push(listModel)
+              this.searchTool=''
+              this.quantity=null
+              this.isAdded=true
             }
-            this.handleList()
           },
           validateList(){
+            if(this.isAdded=== false){
+              alert(`Merci d'AJOUTER l'élément à votre liste. Puis, une fois la liste complétée, cliquez sur VALIDER LA LISTE`)
+            }else{
+              // eslint-disable-next-line no-console
+              console.log(this.finalList)
             this.$store.dispatch('list/pushItem', this.finalList)
             this.$store.dispatch('list/changeListDone', true)
+            }
           }
 
 }

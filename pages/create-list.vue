@@ -41,13 +41,8 @@ export default {
         return {
         name: '',
         message:'',
-        listData:{
-        user_id: this.$auth.user[0].user_id,
-        to_uuid: this.$store.state.list.to_user.user_id,
-        content: this.$store.state.list.finalList,
-        message: this.message,
-        list_name: this.name
-        }
+        list:{content : [ {result: this.$store.state.list.finalList} ]}
+                            
     }
   },'computed': {
         'generatedList' (){
@@ -67,10 +62,22 @@ export default {
             this.$store.dispatch('list/clearAll')
         },
         'send'(){
-            if(this.$store.state.list.to_user.user_id !== undefined){
-            this.$axios.post('http://localhost:3000/api/list/', {
-        
-          }).then(() => {alert(`Liste Envoyée à ${this.$store.state.list.to_user.nickname}!`)}) }
+            alert(JSON.stringify(this.$store.state.list.finalList))
+            if(this.$store.state.list.to_user.nickname===undefined || this.message === "" || this.name === ""){
+             alert('Merci de remplir les champs de message, de nom de la liste ainsi que de selectionner le destinataire')
+          }
+          else{
+             this.$axios.post('http://localhost:3000/api/list/', {
+                'user_id': this.$auth.user[0].user_id,
+                'to_uuid':  this.$store.state.list.to_user.user_id,
+                'content': this.list,
+                'message': this.message,
+                'list_name': this.name
+                 }).then(() => {alert(`Liste Envoyée à ${this.$store.state.list.to_user.nickname}!`)})
+          .then(() => {
+              this.$store.dispatch('list/clearAll')
+              this.$router.push('/connected-section');}) 
+          }
         }
     }
 }

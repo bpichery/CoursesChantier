@@ -2,7 +2,7 @@
     <div class='length'>
       <input
 v-model="searchUser" type="text"
-class="input-search" placeholder="Rechercher un joueur"/>
+class="input-search" placeholder="Rechercher un joueur" required/>
     <section
 v-for="result in filteredList" id="flex-wrapper"
 :key="result.user_id"  :class 
@@ -52,9 +52,11 @@ created(){
 }, methods:{
 handleSelect (element) {
             this.selectedUser = element
+            // eslint-disable-next-line no-console
+            console.log('store to_user')
              this.$store.dispatch('list/pushUser', this.selectedUser)
             }
-}
+          }
 }
 </script>
 <style scoped>
