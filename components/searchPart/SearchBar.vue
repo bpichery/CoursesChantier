@@ -1,12 +1,20 @@
 <template>
 <div class="wrapper">
     <form class="searchform cf">
-  <input type="text" placeholder="Ecrou, vis, boulon, ...">
+  <input type="text" :placeholder="placeholder">
   <button type="submit">Chercher</button>
 </form>
 </div>
 </template>
 <script>
+export default{
+	'props':{
+		'placeholder':{
+			type: String,
+			default: 'Recherchez ici'
+		}
+	}
+}
 
 </script>
 <style scoped>

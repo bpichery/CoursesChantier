@@ -38,11 +38,9 @@ export default{
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
-
 body {
   font-family: 'Oswald', sans-serif;
 }
-
 *,
 *:before,
 *:after{
@@ -65,7 +63,6 @@ body{
     position: absolute;
     border-radius: 50%;
 }
-
 .formPart{
     height: 340px;
     min-width: 190px;
@@ -80,7 +77,6 @@ body{
     padding: 15px;
 	
 }
-
 .formPart *{
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0.5px;
@@ -93,7 +89,6 @@ body{
     line-height: 42px;
     text-align: center;
 }
-
 label{
     display: block;
     margin-top: 30px;

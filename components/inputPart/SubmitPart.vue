@@ -6,14 +6,17 @@
         <h3>Courses Chantier</h3>
 
         <label for="mail">Email</label>
-        <input id="username" type="text" placeholder="exemple@exemple.com">
+        <input id="username" v-model="userInfo.email" type="text" placeholder="exemple@exemple.com">
+
+        <label for="name">Pseudo</label>
+        <input id="username" v-model="userInfo.nickname" type="text" placeholder="MesCoursesChantiers">
 
         <label for="password">Mot de Passe</label>
-        <input id="password" type="password" placeholder="*******">
+        <input id="password" v-model="userInfo.password" type="password" placeholder="*******">
 
         <label for="password">Mot de Passe</label>
-        <input id="password" type="password" placeholder="*******">
-        <button>Valider</button>
+        <input id="password" v-model="userInfo.same_password" type="password" placeholder="*******">
+        <button @click.prevent="submitRegister">Valider</button>
     </form>
 	</div>
 </template>
@@ -22,11 +25,35 @@ export default{
   data(){
     return {
       userInfo: {
+        nickname:'',
         email: '',
-        password:''
+        password:'',
+        same_password:''
       }
     }
-  }
+  },methods: {
+    submitRegister () {
+      // eslint-disable-next-line no-console
+      console.log('Register en cours')
+      if (this.userInfo.password === this.userInfo.same_password) {
+        // eslint-disable-next-line no-console
+      console.log('Same')
+     this.$axios.post('http://localhost:3000/api/register', {
+        nickname: this.userInfo.nickname,
+        email: this.userInfo.email,
+        password: this.userInfo.password
+          }) 
+.then(()=>
+alert(`Bienvenue ${this.userInfo.nickname}, cliquez sur l'onglet connexion!`) )
+          
+        }
+      else {
+        // eslint-disable-next-line no-console
+      console.log('Not the same')
+        this.error = 'Le mot de passe ne correspond pas'
+      }
+    }
+}
 }
 </script>
 <style scoped>

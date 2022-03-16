@@ -13,13 +13,11 @@
             <img class="logo" src="../../images/logo3.png"/>
           </div>
           </nuxt-link>
-          <div v-if="$auth.loggedIn">
-                <h2 class='welcome'>Bienvenue {{$auth.user[0].nickname}}</h2>
-              </div>
           <ul class="menu-items">
-              <nuxt-link class="link" to="/"><li><div class="userWrap"><img class="home" src="../../images/home-page.png"/><p>ACCUEIL</p></div></li></nuxt-link>
+              <nuxt-link v-if="$auth.loggedIn === false" class="link" to="/"><li><div class="userWrap"><img class="home" src="../../images/home-page.png"/><p>ACCUEIL</p></div></li></nuxt-link>
+              <nuxt-link v-else class="link" to="/connected-section"><li><div class="userWrap"><img class="home" src="../../images/home-page.png"/><p>TABLEAU DE BORD</p></div></li></nuxt-link>
               <nuxt-link v-if="$auth.loggedIn === false" class="link" to="/login-submit"><li><div class="userWrap"><img class="user" src="../../images/profile-user.png"/><p>CONNEXION</p></div></li></nuxt-link>
-              <a v-else><li  class="link" @click="bye"><div class="userWrap"><img class="user" src="../../images/profile-user.png"/><p>DECONNEXION</p></div></li></a>
+              <li v-else class="link" @click="bye"><div class="userWrap"><img class="user" src="../../images/profile-user.png"/><p>DECONNEXION</p></div></li>
           </ul>
         </div>
   </nav>
@@ -30,6 +28,7 @@ export default {
    methods: {
     bye(){
      this.$auth.reset()
+.then(() => {this.$router.push('/login-submit');})
     }
   }
 }
@@ -51,15 +50,15 @@ export default {
 body {
   font-family: 'Oswald', sans-serif;
 }
-
+h2{
+  font-family: 'Oswald', sans-serif;
+}
 .container {
   max-width: 1200px;
   width: 90%;
   margin: auto;
 }
-.welcome{
-  margin: 0 auto;
-}
+
 .btn {
   display: inline-block;
   padding: 0.5em 1.5em;
@@ -134,6 +133,7 @@ body {
 }
 
 .link {
+  cursor: pointer;
   text-decoration: none;
   color: #444;
   font-weight: 500;
