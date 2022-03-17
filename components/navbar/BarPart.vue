@@ -27,8 +27,9 @@
 export default {
    methods: {
     bye(){
+      if(this.$auth){
      this.$auth.reset()
-.then(() => {this.$router.push('/login-submit');})
+.then(() => {this.$router.push('/login-submit');})}
     }
   }
 }
@@ -127,8 +128,8 @@ h2{
   list-style: none;
   margin-left: 1.5rem;
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
   font-family: 'Oswald', sans-serif;
+  font-size: 1vw;
   vertical-align: middle;
 }
 
@@ -326,7 +327,7 @@ h2{
 
   .navbar .menu-items li {
     margin-bottom: 1.5rem;
-    font-size: 1.3rem;
+    font-size: 3vw;
     font-weight: 500;
   }
 
@@ -372,14 +373,17 @@ h2{
     font-size: 3rem;
   }
 
-  .navbar .menu-items li {
-    margin-bottom: 2.5rem;
-    font-size: 1.8rem;
-    font-weight: 500;
-  }
+  
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {
+.navbar .menu-items li {
+    margin-bottom: 2.5rem;
+    font-size: 3vw;
+    font-weight: 500;
+  }
+
+
   .img-container h3 {
     font-size: 1.5rem;
   }

@@ -26,7 +26,6 @@ data(){
         'selectedUser':{}
     }
 },
-
 'computed': {
         'filteredList' () {
             if (this.searchUser === '') {
@@ -48,7 +47,6 @@ created(){
     // eslint-disable-next-line no-console
     console.error(err);
   });
-
 }, methods:{
 handleSelect (element) {
             this.selectedUser = element
@@ -60,10 +58,34 @@ handleSelect (element) {
 }
 </script>
 <style scoped>
+.input-search{
+        height: 10px;
+    width: 185px;
+    background: #fefefe;
+    border: solid 1px rgba(0, 0, 0, 0.623);
+    font-family: 'Oswald', sans-serif;
+    margin-right: 5px;
+    padding: 10px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 40%) inset, 1px 1px 1px rgb(255 255 255 / 75%);
+    -moz-box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
+    -webkit-box-shadow: 0 0 4px rgb(0 0 0 / 40%) inset, 1px 1px 1px rgb(255 255 255 / 75%);
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px
+}
+#flex-wrapper{
+    background: #ffffff46;
+    font-family: 'Oswald', sans-serif;
+    border: solid 1px rgba(255, 255, 255, 0.986);
+    margin: 0;
+    text-align: justify;
+    font-size: 95%;
+}
 .length{
   width: fit-content;
 }
 .active{
-        background-color: blueviolet;
+        font-weight: bold;
+        color: #ff6600;
     }
 </style>

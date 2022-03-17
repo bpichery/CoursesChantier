@@ -5,9 +5,11 @@
         <div class='welcolme-wrapper'>
             <h1 class='welcome'>Bienvenue {{$auth.user[0].nickname}}</h1>
         </div>
-        <nuxt-link class='link' to='/create-list'>CRÉER UNE LISTE</nuxt-link>
+       
         <div class="wrapper-content">
-            <div class='part1'>part1</div>
+            <div class='part1'>
+                 <nuxt-link class='link' to='/create-list'>CRÉER UNE LISTE</nuxt-link>
+            </div>
         </div>
     </div>
     <div v-else class='not-connected'>
@@ -37,6 +39,7 @@ export default {
              0px 18px 23px rgba(0, 0, 0, 0.172);
    display: flex;
    justify-content: center;
+   font-size: 75%;
 }
 
 .not-connected{
@@ -48,27 +51,27 @@ export default {
     display: flex;
     flex-direction: column;
 }
-.wrapper-content div{
-    background-color: rgba(255, 255, 255, 0.589);
-}
 .part1{
-border-top-left-radius: 50px;
-border-bottom-left-radius: 50px;
-margin-top: 8px;
+    background-color: rgba(255, 255, 255, 0.589);
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    height: 78vh;
 }
 .link{
     cursor: pointer; 
    font-weight: 600;
-   margin-left: 5%;
+   margin-left: 1%;
    font-family: 'Oswald', sans-serif;
-   background: rgba(255, 255, 255, 0.459);
-   color: black;
+   color: rgb(252, 86, 45);
       width: fit-content;
-padding: 5px;
-border-radius: 50px;
 text-decoration: none;
 }
 .link:hover{
-   background: rgb(247, 74, 31);
+   background: rgba(0, 0, 0, 0.37);
+   color: rgb(255, 255, 255);
 }
 </style>
