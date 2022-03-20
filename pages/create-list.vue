@@ -75,7 +75,7 @@ export default {
         'send'(){
             alert(JSON.stringify(this.$store.state.list.finalList))
             if(this.$store.state.list.to_user.nickname===undefined || this.name === ""){
-             alert('Merci de remplir les champs de message, de nom de la liste ainsi que de selectionner le destinataire')
+             alert(`Merci de selectionner le destinataire en cliquant dessus, et d'inscrire le nom de la liste`)
           }
           else{
              this.$axios.post('http://localhost:3000/api/list/', {

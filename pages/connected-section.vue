@@ -9,6 +9,10 @@
         <div class="wrapper-content">
             <div class='part1'>
                  <nuxt-link class='link' to='/create-list'>CRÉER UNE LISTE</nuxt-link>
+                 <div class='wrapper-list'>
+                    <ListReceived/>
+                    <ListSend/>
+                 </div>
             </div>
         </div>
     </div>
@@ -20,9 +24,13 @@
 </template>
 <script>
 import BarPart from '~/components/navbar/BarPart.vue'
+import ListReceived from '~/components/managementPart/ListHandle/ListReceived.vue'
+import ListSend from '~/components/managementPart/ListHandle/ListSend.vue'
 export default {
     'components': {
-        BarPart
+        BarPart,
+        ListSend,
+        ListReceived
     }
 }
 </script>
@@ -40,6 +48,11 @@ export default {
    display: flex;
    justify-content: center;
    font-size: 75%;
+}
+
+.wrapper-list{
+    display: flex;
+    justify-content: space-around;
 }
 
 .not-connected{
