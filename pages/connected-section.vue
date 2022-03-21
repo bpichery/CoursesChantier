@@ -10,7 +10,7 @@
             <div class='part1'>
                  <nuxt-link class='link' to='/create-list'>CRÉER UNE LISTE</nuxt-link>
                  <div class='wrapper-list'>
-                    <ListReceived/>
+                     <ListReceived/>
                     <ListSend/>
                  </div>
             </div>
@@ -52,7 +52,7 @@ export default {
 
 .wrapper-list{
     display: flex;
-    justify-content: space-around;
+    align-content: space-around;
 }
 
 .not-connected{
@@ -72,7 +72,6 @@ export default {
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 50px;
     border-top-right-radius: 50px;
-    height: 78vh;
 }
 .link{
     cursor: pointer; 
