@@ -6,6 +6,7 @@
             <div class='part1'>
                 <div>
                     <div v-if="generatedDone=== true" class='wrapper'>
+
                         <section class='left-handle'>
                         <p class='explain'>Veuillez selectionner un destinataire</p>
                         <SelectUser/>
@@ -14,8 +15,8 @@
                         <p class='explain'>Vous pouvez inscrire un message</p>
                         <input v-model='message' class='input-content' placeholder="Message" type="text">
                         <div class='bt-wrapper'>
-                        <button @click.prevent='send'>ENVOYER</button>
-                        <button @click.prevent='startAgain'>RECOMMENCER</button>
+                        <button @click.prevent='send'>Envoyer la liste</button>
+                        <button @click.prevent='startAgain'>Recommencer la liste</button>
                         </div>
                         </section>
                         <section>
@@ -40,7 +41,7 @@ v-for="element in generatedList" id="flex-wrapper"
 </template>
 <script>
 import BarPart from '~/components/navbar/BarPart.vue'
-import SelectUser from '~/components/managementPart/ListHandle//SelectUser.vue'
+import SelectUser from '~/components/managementPart/ListHandle/SelectUser.vue'
 import SelectTool from '~/components/managementPart/ListHandle/SelectTool.vue'
 export default {
     'components': {
@@ -51,7 +52,7 @@ export default {
         return {
         name: '',
         message:'',
-        list:{content : [ {result: this.$store.state.list.finalList} ]}
+        list:JSON.stringify(this.$store.state.list.finalList)
                             
     }
   },'computed': {
@@ -69,13 +70,12 @@ export default {
             return element
         },
         'startAgain'(){
-            
             this.$store.dispatch('list/clearAll')
         },
         'send'(){
             alert(JSON.stringify(this.$store.state.list.finalList))
             if(this.$store.state.list.to_user.nickname===undefined || this.name === ""){
-             alert(`Merci de selectionner le destinataire en cliquant dessus, et d'inscrire le nom de la liste`)
+             alert('Merci de remplir les champs du nom de la liste ainsi que de selectionner le destinataire')
           }
           else{
              this.$axios.post('http://localhost:3000/api/list/', {
@@ -83,8 +83,9 @@ export default {
                 'to_uuid':  this.$store.state.list.to_user.user_id,
                 'content': this.list,
                 'message': this.message,
-                'list_name': this.name
-                 }).then(() => {alert(`Liste envoyée à ${this.$store.state.list.to_user.nickname}!`)})
+                'list_name': this.name,
+                'status': "en attente"
+                 }).then(() => {alert(`Liste Envoyée à ${this.$store.state.list.to_user.nickname}!`)})
           .then(() => {
               this.$store.dispatch('list/clearAll')
               this.$router.push('/connected-section');}) 

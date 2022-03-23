@@ -27,10 +27,10 @@ type="number"
                 <div class="picture" > {{result.designation}} {{result.reference}}</div>
             </div>
         </section>
-        
+
       </div>
     </div>
-  
+
 </div>
 </template>
 <script>
@@ -100,7 +100,7 @@ created(){
               alert(`Merci d'AJOUTER l'élément à votre liste. Puis, une fois la liste complétée, cliquez sur VALIDER LA LISTE`)
             }else{
               // eslint-disable-next-line no-console
-              console.log(this.finalList)
+              console.log(JSON.stringify(this.finalList))
             this.$store.dispatch('list/pushItem', this.finalList)
             this.$store.dispatch('list/changeListDone', true)
             }

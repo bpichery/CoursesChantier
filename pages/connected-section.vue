@@ -26,6 +26,7 @@
 import BarPart from '~/components/navbar/BarPart.vue'
 import ListReceived from '~/components/managementPart/ListHandle/ListReceived.vue'
 import ListSend from '~/components/managementPart/ListHandle/ListSend.vue'
+
 export default {
     'components': {
         BarPart,

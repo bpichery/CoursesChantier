@@ -7,12 +7,6 @@ export const
         changeListDone (context, payload) {
             context.commit('changeListDone', payload);
         },
-        sendList (context, payload) {
-            context.commit('sendList', payload);
-        },
-        receivedList (context, payload) {
-            context.commit('receivedList', payload);
-        },
         clearList (context) {
             context.commit('clearList');
         },
@@ -33,12 +27,6 @@ export const
         },
         to_user (state) {
             return state.to_user;
-        },
-        listSend (state) {
-            return state.isSend;
-        },
-        listReceived (state) {
-            return state.isReceived;
         }
     };
     export const mutations = {
@@ -59,20 +47,12 @@ export const
         },
         changeListDone (state, element) {
             state.listDone = element
-        },
-        sendList (state, element) {
-            state.isSend = element
-        },
-        receivedList (state, element) {
-            state.isReceived = element
         }
     };
 
 
     export const state = () => ({
         'listDone':false,
-        'isSend': false,
-        'isReceived': false,
         'finalList': [],
         'to_user': {}        
     });

@@ -1,6 +1,12 @@
 <template>
     <div class='wrapper'>
         <h4>Listes Reçues</h4>
+        <PopSystem v-if="openPop">
+          <h1>{{listSelected.listName.toUpperCase()}}</h1>
+          <h4>Réalisé par {{listSelected.nickname}}</h4>
+          <p>{{listSelected.message}}</p>
+          <p>{{listSelected.content}}</p>
+        </PopSystem>
         <div v-if='isThereContent' class='content'>
         <table>
   <thead>
@@ -19,9 +25,9 @@ v-for="element in finalList" id="flex-list"
       :key="element.listId">
       <td>{{element.listName}}</td>
       <td>{{element.nickname}}</td>
-      <td>{{element.message}}</td>
-      <td>Status</td>
-      <td>Cliquez-ici</td>
+      <td>{{handleMessage(element.message)}}</td>
+      <td>{{element.status}}</td>
+      <td class='pointer' @click="handlePop(element)">Cliquez-ici</td>
       <td>supprimer la liste</td>
     </tr>
   </tbody>
@@ -32,12 +38,19 @@ v-for="element in finalList" id="flex-list"
   </div>
 </template>
 <script>
+import PopSystem from '~/components/Popin/PopSystem.vue'
 export default{
+  'components': {
+        PopSystem
+    },
     data(){
     return{
+        list:'',
         'results': [],
         'users': [],
         'nickname':'',
+        'listSelected':'',
+        openPop: false,
         finalList:[],
         user:{},
         'isThereContent': false
@@ -54,8 +67,12 @@ async created(){
       listId:element.list_id,
       listName:element.list_name,
       message:element.message,
+      status:element.status,
+      content: element.content,
       nickname:userdata[0].nickname
     }
+    // eslint-disable-next-line no-console
+    console.log(userSelected.content)
           this.finalList.push(userSelected)
     })
     if(this.finalList[0]!==undefined){
@@ -65,6 +82,19 @@ async created(){
       this.isThereContent = false
     }
     
+  },
+  methods:{
+    handlePop(element){
+      this.openPop = true
+      this.listSelected= element
+    },
+    handleMessage(element){
+      if(element.length === 0){
+        return '---'
+      }else{
+        return element
+      }
+    }
   }
 }
 </script>
@@ -80,10 +110,13 @@ p{
   text-align: center;
 
 }
-h4{font-family: 'Oswald', sans-serif;
+h4, h1{font-family: 'Oswald', sans-serif;
 text-align: center;
 }
 
+.pointer{
+  cursor: pointer;
+}
 .wrapper{
  box-sizing: border-box;
 overflow-y: auto;
@@ -107,6 +140,7 @@ table {
   border-collapse: collapse;
   margin: 1em;
   font-family: 'Oswald', sans-serif;
+  text-align: center;
 }
 th {
   border-bottom: 1px solid #0000004b;
@@ -114,7 +148,7 @@ th {
   font-size: 0.85em;
   font-weight: 600;
   padding: 0.5em 1em;
-  text-align: left;
+  text-align: center;
 }
 td {
   color: #fff;

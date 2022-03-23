@@ -5,8 +5,7 @@
 		<TabPart/>
 		</div>
 		<FooterPart/>
-    
-	</section>
+    </section>
 </template>
 <script>
 import BarPart from '~/components/navbar/BarPart.vue'
