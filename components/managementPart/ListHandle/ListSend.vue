@@ -5,6 +5,7 @@
           <h1>{{listSelected.listName.toUpperCase()}}</h1>
           <h4>Envoyé à {{listSelected.nickname}}</h4>
           <p>{{listSelected.message}}</p>
+          <p>{{listSelected.content[0]}}</p>
         </PopSystem>
         <div v-if='isThereContent' class='content'>
         <table>
@@ -64,6 +65,7 @@ async created(){
       listId:element.list_id,
       listName:element.list_name,
       message:element.message,
+      content:JSON.parse(element.content),
       status:element.status,
       nickname:userdata[0].nickname
     }

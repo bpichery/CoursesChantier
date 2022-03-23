@@ -51,18 +51,23 @@ export default {
     },data(){
         return {
         name: '',
-        message:'',
-        list:JSON.stringify(this.$store.state.list.finalList)
+        message:''
                             
     }
-  },'computed': {
+  },
+  'computed': {
         'generatedList' (){
             return this.$store.state.list.finalList
         },
         'generatedDone' (){
             return this.$store.state.list.listDone
         }
-    },'methods':{
+    },
+    created(){
+        // eslint-disable-next-line no-console
+        console.log(this.list)
+    },
+    'methods':{
         'checkContent'(element){
             if(element=== undefined){
                 return ''
@@ -81,7 +86,7 @@ export default {
              this.$axios.post('http://localhost:3000/api/list/', {
                 'user_id': this.$auth.user[0].user_id,
                 'to_uuid':  this.$store.state.list.to_user.user_id,
-                'content': this.list,
+                'content': JSON.stringify(this.$store.state.list.finalList),
                 'message': this.message,
                 'list_name': this.name,
                 'status': "en attente"
