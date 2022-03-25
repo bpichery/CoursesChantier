@@ -1,9 +1,10 @@
 <template>
     <div class='wrapper'>
-        <h4>Listes Envoyées</h4>
+        <h4 class='title'>Listes Envoyées</h4>
         <ActionPop v-if='generatedActionPop===true'/>
         <PopSystem v-if="openPop">
           <h1>{{listSelected.listName.toUpperCase()}}</h1>
+          <div class="overflow">
           <h4>Envoyé à {{listSelected.nickname}}</h4>
           <p v-if="listSelected.message.length >0">{{listSelected.message}}</p>
           <table>
@@ -25,16 +26,17 @@
             </tr>
           </tbody>
         </table>
+          </div>
         <p class='pointer' @click="openPop= false">FERMER</p>
         </PopSystem>
-        <div v-if='isThereContent' class='content'>
+        <div v-if='isThereContent' class='content overflow'>
         <table>
   <thead>
     <tr>
       <th>Nom</th>
       <th>Destinataire</th>
-      <th>Message</th>
-      <th>Status</th>
+      <th class='none'>Message</th>
+      <th class='none'>Status</th>
       <th>Détails</th>
       <th>Action</th>
     </tr>
@@ -45,8 +47,8 @@ v-for="element in finalList" id="flex-list"
       :key="element.listId">
       <td class='row'>{{element.listName}}</td>
       <td class='row'>{{element.nickname}}</td>
-      <td class='row'>{{handleMessage(element.message)}}</td>
-      <td class='row'>{{element.status}}</td>
+      <td class='row none'>{{handleMessage(element.message)}}</td>
+      <td class='row none'>{{element.status}}</td>
       <td class='pointer row' @click="handlePop(element)">Cliquez-ici</td>
       <td class='row' @click='handleAction(element)'><img class='action pointer' alt='action' src="../../../images/gear.png"/></td>
     </tr>
@@ -135,6 +137,13 @@ async created(){
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
+.overflow {
+      overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 410px;
+    max-width: 500px;
+    }
 
 body {
   font-family: 'Oswald', sans-serif;
@@ -145,6 +154,10 @@ p{
   font-family: 'Oswald', sans-serif;
   text-align: center;
 
+}
+
+.title{
+  margin-top: 10px
 }
 
 .action{
@@ -215,5 +228,14 @@ tbody tr {
 tbody tr:hover {
   background: #fc520f;
 }
+@media (max-width: 768px) {
+    
+    .row{
+      padding: 1px
+    }
+    .none{
+      display: none;
+    }
 
+}
 </style>

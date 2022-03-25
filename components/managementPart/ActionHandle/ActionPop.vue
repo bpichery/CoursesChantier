@@ -12,6 +12,7 @@ class="wrapperBt">
             <button class='bt-list' @click='toPdf'>Télécharger la liste</button>
             <button v-if='showButton === false' class='bt-list' @click='deleteList'>Supprimer la liste</button>
             </div>
+            <div class="overflow">
            <table id='pop' class="popTable">
             <thead>
               <tr>
@@ -31,6 +32,7 @@ class="wrapperBt">
             </tr>
           </tbody>
         </table>
+            </div>
         <p @click="handleClose">FERMER</p>
             </div>
         </PopSystem>
@@ -137,6 +139,15 @@ p{
 .wrapperBt{
     margin-left: 15px;
 }
+p{
+    margin-top:-5px
+}
+.overflow {
+      overflow: hidden;
+    overflow-y: auto;
+    max-height: 410px;
+    max-width: 500px;
+    }
 .bt-list{
     max-height: 32px;
     min-height: 32px;

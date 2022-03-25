@@ -21,7 +21,9 @@ section{
     background:rgba(255, 255, 255, 0.274)
 }
 .position{
+    margin-top: 35px;
     width:600px;
+    height: 465px;
     padding:10px;
     position:absolute;
     top: 50%;

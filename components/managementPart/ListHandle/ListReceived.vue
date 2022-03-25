@@ -1,9 +1,10 @@
 <template>
     <div class='wrapper'>
-        <h4>Listes Reçues</h4>
+        <h4 class='title'>Listes Reçues</h4>
         <ActionPop v-if='generatedActionPop === true'/>
         <PopSystem v-if="openPop">
           <h1>{{listSelected.listName.toUpperCase()}}</h1>
+          <div class="overflow">
           <h4>Réalisé par {{listSelected.nickname}}</h4>
           <p>{{listSelected.message}}</p>
            <table class="popTable">
@@ -25,16 +26,17 @@
             </tr>
           </tbody>
         </table>
+        </div>
         <p class='pointer' @click="openPop= false">FERMER</p>
         </PopSystem>
-        <div v-if='isThereContent' class='content'>
+        <div v-if='isThereContent' class='content overflow'>
         <table>
   <thead>
     <tr>
       <th>Nom</th>
       <th>Pseudo</th>
-      <th>Message</th>
-      <th>Status</th>
+      <th class='none'>Message</th>
+      <th class='none'>Status</th>
       <th>Détails</th>
       <th>Action</th>
     </tr>
@@ -45,8 +47,8 @@ v-for="element in finalList" id="flex-list"
       :key="element.listId">
       <td class='row'>{{element.listName}}</td>
       <td class='row'>{{element.nickname}}</td>
-      <td class='row'>{{handleMessage(element.message)}}</td>
-      <td class='row'>{{element.status}}</td>
+      <td class='row none'>{{handleMessage(element.message)}}</td>
+      <td class='row none'>{{element.status}}</td>
       <td class='pointer row' @click="handlePop(element)">Cliquez-ici</td>
       <td class='row' @click='handleAction(element)'><img class='action pointer' alt='action' src="../../../images/gear.png"/></td>
     </tr>
@@ -147,6 +149,18 @@ p{
 h4, h1{font-family: 'Oswald', sans-serif;
 text-align: center;
 }
+
+.title{
+  margin-top: 10px
+}
+.overflow {
+      overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 410px;
+    max-width: 500px;
+    }
+
 .action{
   max-height: 50px
 }
@@ -166,8 +180,7 @@ text-align: center;
 
 .wrapper{
  box-sizing: border-box;
-overflow-y: auto;
-width: 50%;
+width: 100%;
 }
 
 *, *:before, *:after {
@@ -212,5 +225,15 @@ tbody tr {
 }
 tbody tr:hover {
   background: #fc520f;
+}
+@media (max-width: 768px) {
+    
+    .row{
+      padding: 1px
+    }
+    .none{
+      display: none;
+    }
+
 }
 </style>

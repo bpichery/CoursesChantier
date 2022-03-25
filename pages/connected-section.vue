@@ -65,6 +65,7 @@ export default {
 .wrapper-content{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .part1{
     background-color: rgba(255, 255, 255, 0.589);
@@ -88,4 +89,16 @@ text-decoration: none;
    background: rgba(0, 0, 0, 0.37);
    color: rgb(255, 255, 255);
 }
+@media (max-width: 768px) {
+    .wrapper-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.part1{
+    width:fit-content
+}
+}
+
 </style>
