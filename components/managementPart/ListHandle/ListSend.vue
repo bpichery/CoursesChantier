@@ -1,18 +1,38 @@
 <template>
     <div class='wrapper'>
         <h4>Listes Envoyées</h4>
+        <ActionPop v-if='generatedActionPop===true'/>
         <PopSystem v-if="openPop">
           <h1>{{listSelected.listName.toUpperCase()}}</h1>
           <h4>Envoyé à {{listSelected.nickname}}</h4>
-          <p>{{listSelected.message}}</p>
-          <p>{{listSelected.content[0]}}</p>
+          <p v-if="listSelected.message.length >0">{{listSelected.message}}</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Quantité</th>
+                <th>Référence</th>
+                <th>Nom</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+          <tbody>
+            <tr
+              v-for="item in listSelected.content" id="flex-list" :key="item.content.designation">
+                <td>{{item.quantity}}</td>
+                <td>{{item.content.reference}}</td>
+                <td>{{item.content.designation}}</td>
+                <td>{{item.content.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class='pointer' @click="openPop= false">FERMER</p>
         </PopSystem>
         <div v-if='isThereContent' class='content'>
         <table>
   <thead>
     <tr>
       <th>Nom</th>
-      <th>Pseudo</th>
+      <th>Destinataire</th>
       <th>Message</th>
       <th>Status</th>
       <th>Détails</th>
@@ -23,25 +43,27 @@
     <tr
 v-for="element in finalList" id="flex-list"
       :key="element.listId">
-      <td>{{element.listName}}</td>
-      <td>{{element.nickname}}</td>
-      <td>{{handleMessage(element.message)}}</td>
-      <td>{{element.status}}</td>
-      <td class='pointer' @click="handlePop(element)">Cliquez-ici</td>
-      <td>supprimer la liste</td>
+      <td class='row'>{{element.listName}}</td>
+      <td class='row'>{{element.nickname}}</td>
+      <td class='row'>{{handleMessage(element.message)}}</td>
+      <td class='row'>{{element.status}}</td>
+      <td class='pointer row' @click="handlePop(element)">Cliquez-ici</td>
+      <td class='row' @click='handleAction(element)'><img class='action pointer' alt='action' src="../../../images/gear.png"/></td>
     </tr>
   </tbody>
 </table>
-</div><p v-else>
+</div><p v-else class='listNone'>
     Aucune liste retrouvée
     </p>
     </div>
 </template>
 <script>
  import PopSystem from '~/components/Popin/PopSystem.vue'
+ import ActionPop from '~/components/managementPart/ActionHandle/ActionPop.vue'
 export default{
   'components': {
-    PopSystem
+    PopSystem,
+    ActionPop
 },
     data(){
     return{
@@ -52,7 +74,15 @@ export default{
         finalList:[],
         user:{},
         'isThereContent': false
+        
     }
+},
+'computed': {
+        'generatedActionPop' () {
+            return this.$store.state.list.actionPop
+        }
+    
+        
 },
 async created(){
   const listSend = await this.$axios.$get(`/api/listSend/${this.$auth.user[0].user_id}`)
@@ -86,6 +116,13 @@ async created(){
       this.openPop = true
       this.listSelected= element
     },
+    handleAction(element){
+      if(element.length !==0){
+      this.$store.dispatch('list/addListSelected', element)
+      this.$store.dispatch('list/changeActionPop', true)
+      this.$store.dispatch('list/changeShowButton', false)
+      }
+    },
     handleMessage(element){
       if(element.length === 0){
         return '---'
@@ -109,10 +146,21 @@ p{
   text-align: center;
 
 }
+
+.action{
+  max-height: 50px
+}
+
 h4, h1{font-family: 'Oswald', sans-serif;
 text-align: center;
 }
+.listNone{
+  width: 50vw
+}
 
+.flex-list td{
+  padding: none;
+}
 .pointer{
   cursor: pointer;
 }
@@ -123,12 +171,6 @@ text-align: center;
   justify-content: center;
 }
 
-.wrapper{
-  box-sizing: border-box;
-overflow-y: auto;
-width: 50%;
-}
-
 *, *:before, *:after {
   margin: 0;
   padding: 0;
@@ -136,6 +178,7 @@ width: 50%;
 }
 
 table {
+  box-sizing: border-box;
   overflow-y: auto;
   background: #0000008e;
   border-radius: 0.25em;
@@ -146,15 +189,21 @@ table {
 }
 th {
   border-bottom: 1px solid #0000004b;
-  color: #e27542;
-  font-size: 0.85em;
+  color: #ff864e;
+  text-shadow: 0 0 2px rgb(112, 30, 3);
+  font-size: 1em;
   font-weight: 600;
   padding: 0.5em 1em;
   text-align: center;
 }
-td {
+
+td{
   color: #fff;
   font-weight: 400;
+  padding: 1px;
+}
+
+.row {
   padding: 0.65em 1em;
 }
 .disabled td {

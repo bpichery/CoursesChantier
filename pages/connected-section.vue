@@ -9,6 +9,7 @@
         <div class="wrapper-content">
             <div class='part1'>
                  <nuxt-link class='link' to='/create-list'>CRÉER UNE LISTE</nuxt-link>
+                 <nuxt-link class='link' to='/add-tools'>AJOUTER DU MATERIEL</nuxt-link>
                  <div class='wrapper-list'>
                      <ListReceived/>
                     <ListSend/>
@@ -53,7 +54,7 @@ export default {
 
 .wrapper-list{
     display: flex;
-    align-content: space-around;
+    justify-content: space-around;
 }
 
 .not-connected{

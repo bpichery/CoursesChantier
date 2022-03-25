@@ -1,6 +1,6 @@
 <template>
 	<section>
-    <div>
+    <div class='position'>
         <slot>
         </slot>
     </div>
@@ -20,7 +20,7 @@ section{
     height:100vh;
     background:rgba(255, 255, 255, 0.274)
 }
-div{
+.position{
     width:600px;
     padding:10px;
     position:absolute;

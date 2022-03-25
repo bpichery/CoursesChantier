@@ -7,8 +7,26 @@ export const
         changeListDone (context, payload) {
             context.commit('changeListDone', payload);
         },
+        changeActionPop (context, payload) {
+            context.commit('changeActionPop', payload);
+        },
+        clearActionPop (context) {
+            context.commit('clearActionPop');
+        },
+        changeShowButton (context, payload) {
+            context.commit('changeShowButton', payload);
+        },
+        clearShowButton (context) {
+            context.commit('clearShowButton');
+        },
+        addListSelected (context, payload) {
+            context.commit('addListSelected', payload);
+        },
         clearList (context) {
             context.commit('clearList');
+        },
+        clearListSelected (context) {
+            context.commit('clearListSelected');
         },
         clearAll (context) {
             context.commit('clearAll');
@@ -27,6 +45,15 @@ export const
         },
         to_user (state) {
             return state.to_user;
+        },
+        listSelected (state) {
+            return state.listSelected;
+        },
+        actionPop (state) {
+            return state.actionPop;
+        },
+        showButton (state) {
+            return state.showButton;
         }
     };
     export const mutations = {
@@ -47,12 +74,33 @@ export const
         },
         changeListDone (state, element) {
             state.listDone = element
+        },
+        addListSelected (state, element) {
+            state.listSelected = element
+        },
+        clearListSelected (state) {
+            state.listSelected = []
+        },
+        changeActionPop (state, element) {
+            state.actionPop = element
+        },
+        clearActionPop (state) {
+            state.actionPop = false
+        },
+        changeShowButton (state, element) {
+            state.showButton = element
+        },
+        clearShowButton (state) {
+            state.actionPop = true
         }
     };
 
 
     export const state = () => ({
         'listDone':false,
+        'actionPop':false,
+        'showButton':true,
         'finalList': [],
-        'to_user': {}        
+        'to_user': {},
+        'listSelected':[]        
     });

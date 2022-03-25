@@ -44,7 +44,6 @@ data(){
         'quantity': null,
         'searchTool':'',
         'selectedTool':{},
-        
         'finalList':[]
     }
 },
