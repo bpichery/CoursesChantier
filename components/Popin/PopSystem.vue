@@ -22,8 +22,7 @@ section{
 }
 .position{
     margin-top: 35px;
-    width:600px;
-    height: 465px;
+    width:500px;
     padding:10px;
     position:absolute;
     top: 50%;

@@ -2,14 +2,14 @@
 <div>
     <div v-if="$auth.loggedIn">
         <BarPart class='navbar'/>
-        <div class='welcolme-wrapper'>
+        <div class='welcome-wrapper'>
             <h1 class='welcome'>Bienvenue {{$auth.user[0].nickname}}</h1>
         </div>
        
         <div class="wrapper-content">
             <div class='part1'>
                  <nuxt-link class='link' to='/create-list'>CRÉER UNE LISTE</nuxt-link>
-                 <nuxt-link class='link' to='/add-tools'>AJOUTER DU MATERIEL</nuxt-link>
+                 <nuxt-link class='link' to='/add-tools'>GÉRER LE MATERIEL</nuxt-link>
                  <div class='wrapper-list'>
                      <ListReceived/>
                     <ListSend/>
@@ -39,7 +39,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
 
-.welcolme-wrapper{
+.welcome-wrapper{
     padding-top: 65px;
     padding-left: 5px;
   font-family: 'Oswald', sans-serif;
@@ -68,6 +68,7 @@ export default {
     align-items: center;
 }
 .part1{
+    width: 99vw;
     background-color: rgba(255, 255, 255, 0.589);
     margin-left: 5px;
     margin-right: 5px;

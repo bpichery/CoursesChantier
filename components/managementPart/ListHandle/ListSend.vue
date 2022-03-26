@@ -3,10 +3,16 @@
         <h4 class='title'>Listes Envoyées</h4>
         <ActionPop v-if='generatedActionPop===true'/>
         <PopSystem v-if="openPop">
-          <h1>{{listSelected.listName.toUpperCase()}}</h1>
+          <h1 class='titlePop'>{{listSelected.listName.toUpperCase()}}</h1>
           <div class="overflow">
-          <h4>Envoyé à {{listSelected.nickname}}</h4>
-          <p v-if="listSelected.message.length >0">{{listSelected.message}}</p>
+          <div class='flex'>
+          <h4>Réalisé par {{listSelected.nickname}}</h4>
+          <p><span class='bold'>Date: </span>{{handleDate(listSelected.created)}}</p>
+            </div>
+          <div class='flex'>
+            <p><span class='bold'>Status: </span>{{listSelected.status.toUpperCase()}}</p>
+            <p v-if="listSelected.message !== ''"><span class='bold'>Message: </span>{{listSelected.message}}</p>
+          </div>
           <table>
             <thead>
               <tr>
@@ -27,18 +33,18 @@
           </tbody>
         </table>
           </div>
-        <p class='pointer' @click="openPop= false">FERMER</p>
+        <p class='pointer' @click="handleClosedPop">FERMER</p>
         </PopSystem>
-        <div v-if='isThereContent' class='content overflow'>
+        <div v-if='isThereContent' class='content'>
         <table>
   <thead>
     <tr>
       <th>Nom</th>
       <th>Destinataire</th>
-      <th class='none'>Message</th>
+      <th class='none'>Date</th>
       <th class='none'>Status</th>
       <th>Détails</th>
-      <th>Action</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -47,8 +53,8 @@ v-for="element in finalList" id="flex-list"
       :key="element.listId">
       <td class='row'>{{element.listName}}</td>
       <td class='row'>{{element.nickname}}</td>
-      <td class='row none'>{{handleMessage(element.message)}}</td>
-      <td class='row none'>{{element.status}}</td>
+      <td class='row none'>{{handleDate(element.created)}}</td>
+      <td :class='handleStatus(element.status)' class='row none'>⚈</td>
       <td class='pointer row' @click="handlePop(element)">Cliquez-ici</td>
       <td class='row' @click='handleAction(element)'><img class='action pointer' alt='action' src="../../../images/gear.png"/></td>
     </tr>
@@ -99,7 +105,8 @@ async created(){
       message:element.message,
       content:JSON.parse(element.content),
       status:element.status,
-      nickname:userdata[0].nickname
+      nickname:userdata[0].nickname,
+      created: element.created
     }
     
     this.finalList.push(userSelected)
@@ -118,6 +125,16 @@ async created(){
       this.openPop = true
       this.listSelected= element
     },
+    handleDate(element){
+      const date = new Date(element);
+      if(typeof date === 'undefined'){
+        return '---'
+      }
+      return date.toLocaleDateString('fr-FR');
+    },
+    handleClosedPop(){
+     this.openPop = false
+    },
     handleAction(element){
       if(element.length !==0){
       this.$store.dispatch('list/addListSelected', element)
@@ -131,76 +148,98 @@ async created(){
       }else{
         return element
       }
+    },
+    handleStatus(element){
+      if(element=== 'en attente'){
+        return 'wait'
+      }else if(element=== 'refusé'){
+        return 'wrong'
+      }
+      else{
+        return 'done'
+      }
     }
   }
 }
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
-.overflow {
-      overflow: hidden;
-    overflow-y: auto;
-    overflow-x: auto;
-    max-height: 410px;
-    max-width: 500px;
-    }
 
 body {
   font-family: 'Oswald', sans-serif;
   text-align: center;
-  
+
 }
 p{
   font-family: 'Oswald', sans-serif;
   text-align: center;
 
 }
+h4, h1{font-family: 'Oswald', sans-serif;
+text-align: center;
+    margin-bottom: 0px
+}
+.bold{
+  font-weight: 600;
+}
 
+.flex{
+  display: flex;
+  justify-content: space-around;
+}
 .title{
   margin-top: 10px
 }
+.titlePop{
+  margin-top: -5px
+}
+.overflow {
+      overflow: hidden;
+    overflow-y: auto;
+    
+    max-height: 410px;
+    max-width: 500px;
+    }
 
 .action{
   max-height: 50px
 }
-
-h4, h1{font-family: 'Oswald', sans-serif;
-text-align: center;
-}
-.listNone{
-  width: 50vw
-}
-
-.flex-list td{
-  padding: none;
+.popTable{
+  position: sticky;
+    top: 0;
 }
 .pointer{
   cursor: pointer;
 }
 
-.content{
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.wait{
+  color:#fc6b1d;
+  font-weight: bold;
+  width: 1em
 }
-
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.done{
+  color:#249c00;
+  font-weight: bold;
+  width: 1em
 }
-
-table {
-  box-sizing: border-box;
-  overflow-y: auto;
-  background: #0000008e;
-  border-radius: 0.25em;
-  border-collapse: collapse;
-  margin: 1em;
-  font-family: 'Oswald', sans-serif;
-  text-align: center;
+.wrong{
+  color:#c70000;
+  font-weight: bold;
+  width: 1em
 }
-th {
+.row {
+  padding: 0.65em 1em;
+}
+table {box-sizing: border-box;
+    overflow-y: auto;
+    background: #0000008e;
+    border-radius: 0.25em;
+    border-collapse: collapse;
+    margin: 1em;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    }
+    th {
   border-bottom: 1px solid #0000004b;
   color: #ff864e;
   text-shadow: 0 0 2px rgb(112, 30, 3);
@@ -209,24 +248,45 @@ th {
   padding: 0.5em 1em;
   text-align: center;
 }
-
+p{
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+}
+.wrapperBt{
+    margin-left: 15px;
+}
+.bt-list{
+    max-height: 32px;
+    min-height: 32px;
+    margin-top: 2px;
+    margin-right: 5px;
+    height: 10px;
+    background: rgb(236, 95, 52);
+    background: -moz-linear-gradient(top, rgb(253, 90, 41) 0%, rgb(255, 126, 41) 100%);
+    background: -webkit-linear-gradient(top, rgb(236, 104, 52) 0%,rgb(220, 96, 38) 100%);
+    background: -o-linear-gradient(top, rgb(255, 121, 31) 0%,rgb(247, 127, 14) 100%);
+    background: -ms-linear-gradient(top, rgb(255, 118, 26) 0%,rgb(236, 124, 19) 100%);
+    background: linear-gradient(to bottom, rgb(255 71 1) 0%,rgb(255, 129, 27) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34adec', endColorstr='#2691dc',GradientType=0 );
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    padding: 4px;
+    padding-right: 8px;
+    padding-left: 8px;
+    box-shadow: 0 0 2px #ff7e33 inset;
+    -moz-box-shadow: 0 0 2px #fc6b1d inset;
+    -webkit-box-shadow: 0 0 2px #ff760d inset;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+}
 td{
   color: #fff;
   font-weight: 400;
   padding: 1px;
-}
-
-.row {
-  padding: 0.65em 1em;
-}
-.disabled td {
-  color: #0000001f;
-}
-tbody tr {
-  transition: background 0.25s ease;
-}
-tbody tr:hover {
-  background: #fc520f;
 }
 @media (max-width: 768px) {
     
@@ -236,6 +296,12 @@ tbody tr:hover {
     .none{
       display: none;
     }
+    .overflow {
+      overflow-x: auto;
+    }
+    .title{
+  margin-top: 10px
+}
 
 }
 </style>

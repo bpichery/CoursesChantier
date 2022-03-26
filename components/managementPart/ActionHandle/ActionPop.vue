@@ -3,14 +3,19 @@
         <PopSystem>
             <div>
             <div
-v-if='listSelected.status === waitStatus && showButton === true'
-class="wrapperBt">
+v-if='listSelected.status === waitStatus && showButton === true' class="wrapperBt">
+            <div class="wrapperAction">
             <button class='bt-list' @click.prevent="handleStatus('accepté')">ACCEPTER</button>
             <button class='bt-list' @click.prevent="handleStatus('refusé')">REFUSER</button>
             </div>
+            <p class="close" @click="handleClose">FERMER</p>
+            </div>
             <div v-else class="wrapperBt">
+              <div>
             <button class='bt-list' @click='toPdf'>Télécharger la liste</button>
             <button v-if='showButton === false' class='bt-list' @click='deleteList'>Supprimer la liste</button>
+              </div>
+              <p class="close" @click="handleClose">FERMER</p>
             </div>
             <div class="overflow">
            <table id='pop' class="popTable">
@@ -33,7 +38,6 @@ class="wrapperBt">
           </tbody>
         </table>
             </div>
-        <p @click="handleClose">FERMER</p>
             </div>
         </PopSystem>
 	</section>
@@ -85,11 +89,15 @@ doc.autoTable({ didDrawPage: header, html: '#pop' })
 
 doc.autoTable({ didDrawPage: header, html: '#pop' })
         }
-doc.save("test.pdf");
+doc.save("test.pdf")
+
     },
     handleClose(){
         this.$store.dispatch('list/changeActionPop', false)
         this.$store.dispatch('list/changeShowButton', true)
+    },
+    handleReload(){
+    window.location.reload();
     },
     deleteList(){
         this.$axios.delete(`http://localhost:3000/api/list/${this.listSelected.listId}` ).then(() => {alert(`Liste supprimée`)})
@@ -104,7 +112,9 @@ doc.save("test.pdf");
         status: element
           }) 
 .then(()=>
-alert(`Changement de status vers ${element}!`) )
+alert(`Changement de status vers ${element}!`)
+
+)
           
         }
      
@@ -136,17 +146,27 @@ p{
     cursor: pointer;
     font-family: 'Oswald', sans-serif;
 }
+
+.wrapperAction{
+    display: flex;
+}
 .wrapperBt{
     margin-left: 15px;
+    display: flex;
+    justify-content: space-between;
+        align-items: baseline;
+    margin-right: 15px;
 }
 p{
     margin-top:-5px
 }
+
 .overflow {
       overflow: hidden;
     overflow-y: auto;
     max-height: 410px;
     max-width: 500px;
+    margin: 0 auto;
     }
 .bt-list{
     max-height: 32px;
