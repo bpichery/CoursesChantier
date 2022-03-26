@@ -71,25 +71,25 @@ methods: {
         // eslint-disable-next-line new-cap
         const doc = new jsPDF();
         if(this.showButton===true){
-        const headerText= `Liste de ${this.listSelected.nickname} - ${this.listSelected.listName}`
+        const headerText= `${this.listSelected.listName}, liste de ${this.listSelected.nickname} - envoyé le ${this.handleDate(this.listSelected.created)}`
         const header = function (data) {
-                    doc.setFontSize(13);
+                    doc.setFontSize(12);
                     doc.setTextColor(40);
                     doc.text(headerText, data.settings.margin.bottom, 10);
                 };
 
 doc.autoTable({ didDrawPage: header, html: '#pop' })
         }else {
-        const headerText= `Liste ${this.listSelected.listName} -  envoyé à ${this.listSelected.nickname}`
+        const headerText= `Liste ${this.listSelected.listName} -  envoyé à ${this.listSelected.nickname} le ${this.handleDate(this.listSelected.created)}`
         const header = function (data) {
-                    doc.setFontSize(18);
+                    doc.setFontSize(12);
                     doc.setTextColor(40);
                     doc.text(headerText, data.settings.margin.bottom, 10);
                 };
 
 doc.autoTable({ didDrawPage: header, html: '#pop' })
         }
-doc.save("test.pdf")
+doc.save("listeDeCourses.pdf")
 
     },
     handleClose(){
@@ -98,6 +98,13 @@ doc.save("test.pdf")
     },
     handleReload(){
     window.location.reload();
+    },
+    handleDate(element){
+      const date = new Date(element);
+      if(typeof date === 'undefined'){
+        return '---'
+      }
+      return date.toLocaleDateString('fr-FR');
     },
     deleteList(){
         this.$axios.delete(`http://localhost:3000/api/list/${this.listSelected.listId}` ).then(() => {alert(`Liste supprimée`)})

@@ -97,9 +97,8 @@ text-decoration: none;
     align-items: center;
     margin-bottom: 25px;
 }
-.part1{
-    width:fit-content
-}
+
+
 }
 
 </style>

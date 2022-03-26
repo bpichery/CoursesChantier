@@ -6,7 +6,7 @@
           <h1 class='titlePop'>{{listSelected.listName.toUpperCase()}}</h1>
           <div class="overflow">
           <div class='flex'>
-          <h4>Réalisé par {{listSelected.nickname}}</h4>
+          <h4>Envoyé à {{listSelected.nickname}}</h4>
           <p><span class='bold'>Date: </span>{{handleDate(listSelected.created)}}</p>
             </div>
           <div class='flex'>
@@ -50,7 +50,7 @@
   <tbody>
     <tr
 v-for="element in finalList" id="flex-list"
-      :key="element.listId">
+      :key="element.created">
       <td class='row'>{{element.listName}}</td>
       <td class='row'>{{element.nickname}}</td>
       <td class='row none'>{{handleDate(element.created)}}</td>
@@ -283,6 +283,10 @@ p{
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
 }
+.wrapper{
+   min-width:43vw;
+  max-width:49vw
+}
 td{
   color: #fff;
   font-weight: 400;
@@ -302,6 +306,9 @@ td{
     .title{
   margin-top: 10px
 }
-
+.wrapper{
+    min-width: none;
+    max-width: none;
+}
 }
 </style>
