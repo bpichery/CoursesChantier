@@ -1,31 +1,74 @@
 <template>
 <div class="wrapper">
     <form class="searchform cf">
-  <input type="text" :placeholder="placeholder">
-  <button type="submit">Chercher</button>
+  <input v-model='searchItem' type="text" placeholder="Recherchez ici">
+  <button type="submit" @click.prevent="filteredList">Chercher</button>
+  <div v-if="showResult=== true">
+ <section id="flex-wrapper">
+            <div class="first part">
+				<br/>
+                <div v-for="item in finalList" :key="item.id" class="picture" >{{item.reference}} // {{item.designation}}</div>
+            </div>
+        </section>
+  </div>
 </form>
 </div>
 </template>
 <script>
 export default{
-	'props':{
-		'placeholder':{
-			type: String,
-			default: 'Recherchez ici'
+	data(){
+        return {
+        searchItem:'',
+        results:[],
+		showResult:false,
+		finalList: ''               
+    }
+},
+created(){
+    this.$axios
+  .get("/api/tools")
+  .then((res) => {
+    this.results = res.data
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(this.results))
+  })
+  .catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err);
+  });
+},
+methods: {
+        'filteredList' () {
+			this.showResult = true
+            if (this.searchItem === '') {
+                return ''
+            }
+              this.finalList = this.results.filter((post) =>
+            
+          post.designation.toLowerCase().includes(this.searchItem.toLowerCase())|| post.reference.toLowerCase().includes(this.searchItem.toLowerCase()) )
+        
 		}
-	}
+    }
+    
 }
 
 </script>
 <style scoped>
-
-
+body{
+	font-family: 'Oswald', sans-serif;
+}
+#flex-wrapper{
+	margin-bottom: 5px;
+}
 *,*:after,*:before {
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
 }
-
+.picture{
+font-family: 'Oswald', sans-serif;
+font-size: 14px;
+}
 .wrapper{
   width: 100%;
   display: flex;
@@ -44,7 +87,7 @@ export default{
 body {
   background: #3aaae8;
   color: #fff;
-  font:12px/18px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font:12px/18px  'Oswald', sans-serif;
 }
 a,a:visited {
   color:#fff
@@ -58,9 +101,8 @@ a,a:visited {
   background:rgba(244,244,244,.79);
   border: 1px solid #d3d3d3;
   padding: 2px 5px;
-  position: absolute;
   margin: 3%;
-  width:313px;
+  width:400px;
   box-shadow:0 4px 9px rgba(0,0,0,.37);
   -moz-box-shadow:0 4px 9px rgba(0,0,0,.37);
   -webkit-box-shadow:0 4px 9px rgba(0,0,0,.37);
@@ -75,10 +117,10 @@ a,a:visited {
 .searchform input {
 	background:#fefefe;
 	border: none;
-	font:12px/12px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	font:12px/12px  'Oswald', sans-serif;
 	margin-right: 5px;
 	padding: 10px;
-	width: 190px;
+	width: 277px;
 	box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
 	-moz-box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
 	-webkit-box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
@@ -114,8 +156,8 @@ a,a:visited {
 	border: none;
 	color:#fff;
 	cursor: pointer;
-	font: 13px/13px 'HelveticaNeue', Helvetica, Arial, sans-serif;
-	padding: 10px;
+	font: 13px/13px  'Oswald', sans-serif;
+	padding: 12px;
 	width:106px;
 	box-shadow: 0 0 2px #ff7e33 inset;
 	-moz-box-shadow: 0 0 2px #fc6b1d inset;

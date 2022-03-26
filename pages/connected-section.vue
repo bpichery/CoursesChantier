@@ -68,10 +68,8 @@ export default {
     align-items: center;
 }
 .part1{
-    width: 99vw;
+    width: 98vw;
     background-color: rgba(255, 255, 255, 0.589);
-    margin-left: 5px;
-    margin-right: 5px;
     margin-bottom: 5px;
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 50px;
@@ -90,7 +88,7 @@ text-decoration: none;
    background: rgba(0, 0, 0, 0.37);
    color: rgb(255, 255, 255);
 }
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .wrapper-list{
     display: flex;
     flex-direction: column;

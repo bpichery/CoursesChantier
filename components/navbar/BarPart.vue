@@ -376,7 +376,7 @@ h2{
   
 }
 
-@media (min-width: 769px) and (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 900px) {
 .navbar .menu-items li {
     margin-bottom: 2.5rem;
     font-size: 3vw;

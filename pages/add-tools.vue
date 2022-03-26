@@ -3,7 +3,7 @@
     <div v-if="$auth.loggedIn">
         <BarPart class='navbar'/>
         <div class="content">
-        <section>
+        <section class='padding'>
         <h1 class='welcome'>Ajouter du matériel</h1>
         <p v-if="isOkay=== false" class='message'>{{message.toUpperCase()}}</p>
         <p v-if="isOkay" class='message'>{{message.toUpperCase()}}</p>
@@ -159,7 +159,7 @@ label{
     margin-bottom: -15px;
     margin-top: 10px;
 }
-section{
+.padding{
     padding-top: 85px
 }
 .welcome{

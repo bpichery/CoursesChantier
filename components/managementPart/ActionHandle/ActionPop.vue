@@ -96,9 +96,6 @@ doc.save("listeDeCourses.pdf")
         this.$store.dispatch('list/changeActionPop', false)
         this.$store.dispatch('list/changeShowButton', true)
     },
-    handleReload(){
-    window.location.reload();
-    },
     handleDate(element){
       const date = new Date(element);
       if(typeof date === 'undefined'){
@@ -107,21 +104,22 @@ doc.save("listeDeCourses.pdf")
       return date.toLocaleDateString('fr-FR');
     },
     deleteList(){
-        this.$axios.delete(`http://localhost:3000/api/list/${this.listSelected.listId}` ).then(() => {alert(`Liste supprimée`)})
+        this.$axios.delete(`http://localhost:3000/api/list/${this.listSelected.listId}` )
           .then(() => {
               this.$store.dispatch('list/clearActionPop')
               this.$store.dispatch('list/clearShowButton')
-              })
+              }).then(()=>
+    alert(`Suppression de la liste ${this.listSelected.listName}!`) ).then(()=> window.location.reload())
     },
     handleStatus (element) {
         this.isValidated= true
   	this.$axios.put(`http://localhost:3000/api/list/${this.listSelected.listId}`, {
         status: element
           }) 
-.then(()=>
-alert(`Changement de status vers ${element}!`)
+    .then(()=>
+    alert(`Changement de status vers ${element}!`) ).then(()=> window.location.reload())
 
-)
+
           
         }
      
