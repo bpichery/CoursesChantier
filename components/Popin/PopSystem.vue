@@ -1,14 +1,11 @@
 <template>
 	<section>
-    <div class='position'>
-        <slot>
-        </slot>
-    </div>
+        <div class='position'>
+            <slot>
+            </slot>
+        </div>
 	</section>
 </template>
-<script>
-
-</script>
 <style scoped>
 section{
     position: fixed;
@@ -18,8 +15,9 @@ section{
     right:0;
     width:100vw;
     height:100vh;
-    background:rgba(255, 255, 255, 0.274)
+    background:rgba(255, 255, 255, 0.582)
 }
+
 .position{
     margin-top: 35px;
     width:500px;
@@ -32,15 +30,16 @@ section{
     border: 50px;
     box-shadow: rgba(0, 0, 0, 0.671);
 }
+
 @media all and (max-width:900px){
-div{
-    max-width: 500px;
-    width: calc(100% -20px)
-}
+    div{
+        max-width: 500px;
+        width: calc(100% -20px)
+    }
 }
 @media all and (max-width:480px){
-  div{max-width: 400px;
-    width: calc(100% -20px)
+    div{max-width: 400px;
+        width: calc(100% -20px)
     }  
 }
 </style>

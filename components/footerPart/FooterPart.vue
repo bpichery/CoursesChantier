@@ -1,30 +1,19 @@
 <template>
-<div>
-<footer class="footer-distributed">
-
+  <div>
+    <footer class="footer-distributed">
 			<div class="footer-right">
-      <img class="logo" src="../../images/logo3.png"/>
-
-			</div>
-
+        <img class="logo" src="../../images/logo3.png"/>
+      </div>
 			<div class="footer-left">
-
 				<p class="footer-links">
-					<a class="link-1" href="#">Accueil</a>
-
-					<a href="#">Connexion</a>
-
-				</p>
-
+				  <a class="link-1" href="#">Accueil</a>
+				  <a href="#">Connexion</a>
+        </p>
 				<p>Courses Chantier &copy; 2022</p>
 			</div>
-
 		</footer>
-</div>
-    </template>
-<script>
-
-</script>
+  </div>
+</template>
 <style scoped>
 .logo{
   max-width: 10vw;

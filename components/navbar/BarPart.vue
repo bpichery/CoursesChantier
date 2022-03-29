@@ -36,6 +36,7 @@ export default {
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
+
 *,
 *::after,
 *::before {
@@ -86,13 +87,13 @@ h2{
   max-width: 4.2rem;
 }
 .user, .home{
-   max-height: 25px;
-   margin-right: 15px;
+  max-height: 25px;
+  margin-right: 15px;
 }
 
 .userWrap{
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .navbar input[type="checkbox"],
@@ -148,11 +149,8 @@ h2{
 
 .showcase-area {
   height: 50vh;
-  background: linear-gradient(
-      rgba(240, 240, 240, 0.144),
-      rgba(255, 255, 255, 0.336)
-    ),
-    url("https://i.postimg.cc/wT3TQS3V/header-image2.jpg");
+  background: linear-gradient(rgba(240, 240, 240, 0.144),rgba(255, 255, 255, 0.336)),
+  url("https://i.postimg.cc/wT3TQS3V/header-image2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -234,26 +232,24 @@ h2{
 }
 
 @media (min-width: 768px) {
-
-#displayPhone{
+  #displayPhone{
     display: none;
-}
-
+  }
 }
 
 @media (max-width: 768px) {
-.wrapperLogo{
+  .wrapperLogo{
     margin-top: 15px;
-}
+  }
 
-    #displayPC{
+  #displayPC{
     display: none;
-}
+  }
+
   .navbar {
     opacity: 0.95;
   }
   
-
   .navbar-container input[type="checkbox"],
   .navbar-container .hamburger-lines {
     display: block;
@@ -372,17 +368,13 @@ h2{
     right: 15px;
     font-size: 3rem;
   }
-
-  
 }
-
 @media (min-width: 769px) and (max-width: 900px) {
-.navbar .menu-items li {
+  .navbar .menu-items li {
     margin-bottom: 2.5rem;
     font-size: 3vw;
     font-weight: 500;
   }
-
 
   .img-container h3 {
     font-size: 1.5rem;
@@ -392,11 +384,9 @@ h2{
     font-size: 0.7rem;
   }
 }
-
 @media (orientation: landscape) and (max-height: 500px) {
   .showcase-area {
     height: 50vmax;
   }
 }
-
 </style>

@@ -4,7 +4,7 @@
             <h1>Comment ça marche ?</h1>
             <ListTuto/>
             <div class="wrapper">
-            <img class="fleche" src="../../images/fleche.png"/>
+                <img class="fleche" src="../../images/fleche.png"/>
             </div>
         </section>
     </div>   
@@ -12,8 +12,9 @@
 <script>
 import ListTuto from '~/components/tutoPart/ListTuto.vue'
 export default {
-  'components': {
-        ListTuto}
+    components: {
+        ListTuto
+    }
 }
 </script>
 <style scoped>
@@ -24,9 +25,7 @@ h1{
     font-family: 'Oswald', sans-serif;
     font-size: 35px;
     color: white;
-    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.808),
-             0px 8px 13px rgba(0, 0, 0, 0.774),
-             0px 18px 23px rgba(0, 0, 0, 0.172);
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.808), 0px 8px 13px rgba(0, 0, 0, 0.774), 0px 18px 23px rgba(0, 0, 0, 0.172);
 }
 
 .fleche{

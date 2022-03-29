@@ -1,19 +1,15 @@
 <template>
-    <div class="main">  	
-		<div class="background">
-    </div>
+  <div class="main">  	
+		<div class="background"/>
     <form class="formPart">
-        <p>Courses Chantier</p>
-
-        <label for="mail">Email</label>
-        <input id="username" v-model="userInfo.email"  type="text" placeholder="exemple@exemple.com">
-
-        <label for="password">Mot de Passe</label>
-        <input id="password" v-model="userInfo.password"  type="password" placeholder="*******">
-
-        <button @click.prevent="submitLogin">Valider</button>
+      <p>Courses Chantier</p>
+      <label for="mail">Email</label>
+      <input id="username" v-model="userInfo.email"  type="text" placeholder="exemple@exemple.com">
+      <label for="password">Mot de Passe</label>
+      <input id="password" v-model="userInfo.password"  type="password" placeholder="*******">
+      <button @click.prevent="submitLogin">Valider</button>
     </form>
-	</div>
+  </div>
 </template>
 <script>
 export default{
@@ -28,9 +24,7 @@ export default{
   methods: {
     submitLogin () {
       const log = this.userInfo
-      this.$auth.loginWith('local',{
-      data:log
-  	})
+      this.$auth.loginWith('local', {data:log})
      .then(() => {this.$router.push('/connected-section');})
     }
   }
@@ -44,57 +38,64 @@ body {
 *,
 *:before,
 *:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
+
 body{
-    background-color: #080710;
+  background-color: #080710;
 }
+
 .background{
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%,-50%);
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%,-50%);
 }
+
 .background .shape{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
 }
+
 .formPart{
-    height: 340px;
-    min-width: 190px;
-	    width: 18vw;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    padding: 15px;
-	
+  height: 340px;
+  min-width: 190px;
+  width: 18vw;
+  background-color: rgba(255,255,255,0.13);
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  padding: 15px;
 }
+
 .formPart *{
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
+
 .formPart p{
     font-size: calc(14px + (26 - 14) * ((75vw - 300px) / (1600 - 300)));
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
+
 label{
     display: block;
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
 }
+
 input{
     display: block;
     height: 30px;
@@ -107,9 +108,11 @@ input{
     font-size: 14px;
     font-weight: 300;
 }
+
 ::placeholder{
     color: #fffefe;
 }
+
 button{
     margin-top: 43px;
     width: 100%;
@@ -121,10 +124,12 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
+
 .social{
   margin-top: 30px;
   display: flex;
 }
+
 .social div{
   background: red;
   width: 150px;
@@ -134,12 +139,15 @@ button{
   color: #eaf0fb;
   text-align: center;
 }
+
 .social div:hover{
   background-color: rgba(255,255,255,0.47);
 }
+
 .social .fb{
   margin-left: 25px;
 }
+
 .social i{
   margin-right: 4px;
 }

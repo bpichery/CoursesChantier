@@ -1,8 +1,8 @@
 <template>
 	<section>
-    <div class="containerLogin">
-		<BarPart class="navbar"/>
-		<TabPart/>
+    	<div class="containerLogin">
+			<BarPart class="navbar"/>
+			<TabPart/>
 		</div>
 		<FooterPart/>
     </section>
@@ -20,22 +20,22 @@ export default {
 }
 </script>
 <style>
-body{
-	margin: 0;
-}
-.navbar{
-	top:0;
-	left: 0;
-}
+	body{
+		margin: 0;
+	}
+	.navbar{
+		top:0;
+		left: 0;
+	}
 
-.containerLogin{
-	background-image:  url(~/images/test.jpg);
-     background-size: cover;
-    background-position: center;
-    width: 100%;
-	max-height: 100%;
-	margin-top: -100px;
-	display: flex;
-	justify-content: center;
-}
+	.containerLogin{
+		background-image:  url(~/images/test.jpg);
+        background-size: cover;
+    	background-position: center;
+    	width: 100%;
+		max-height: 100%;
+		margin-top: -100px;
+		display: flex;
+		justify-content: center;
+	}
 </style>
