@@ -71,7 +71,7 @@ export default {
   },
   proxy: {
       '/api': {
-        target: 'http://localhost:8080/',
+        target: 'http://backend-courseschantier.herokuapp.com/',
         changeOrigin: true,
         pathRewrite: { '^/api': '/' },
       }
