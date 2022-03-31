@@ -67,8 +67,15 @@ export default {
     }
   },
   axios: {
-    baseURL: 'https://courses-chantier-backend.herokuapp.com/', // Used as fallback if no runtime config is provided
+    proxy: true,
   },
+  proxy: {
+      '/api': {
+        target: 'https://courses-chantier-backend.herokuapp.com',
+        changeOrigin: true,
+        pathRewrite: { '^/api': '/' },
+      }
+    },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
