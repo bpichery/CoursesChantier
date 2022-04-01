@@ -38,8 +38,8 @@ section{
     }
 }
 @media all and (max-width:480px){
-    div{max-width: 400px;
-        width: calc(100% -20px)
+    div{max-width: 300px;
+        width: border-box
     }  
 }
 </style>

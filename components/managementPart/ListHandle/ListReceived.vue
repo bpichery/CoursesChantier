@@ -17,7 +17,7 @@
         <thead>
           <tr>
             <th>Quantité</th>
-            <th>Référence</th>
+            <th class='displayNone'>Référence</th>
             <th>Nom</th>
             <th>Description</th>
           </tr>
@@ -25,7 +25,7 @@
         <tbody>
           <tr v-for="item in listSelected.content" id="flex-list" :key="item.content.designation" class="border">
             <td>{{item.quantity}}</td>
-            <td>{{item.content.reference}}</td>
+            <td class='displayNone'>{{item.content.reference}}</td>
             <td>{{item.content.designation}}</td>
             <td>{{item.content.description}}</td>
           </tr>
@@ -284,6 +284,10 @@ td{
   color: rgb(255, 255, 255);
   font-weight: 400;
   padding: 1px;
+}
+
+.displayNone{
+  display: none;
 }
 @media (max-width: 768px) {
     

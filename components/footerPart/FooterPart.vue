@@ -6,8 +6,9 @@
       </div>
 			<div class="footer-left">
 				<p class="footer-links">
-				  <a class="link-1" href="#">Accueil</a>
-				  <a href="#">Connexion</a>
+          <nuxt-link class="link-1" to="/"><p>Accueil</p></nuxt-link>
+          <nuxt-link v-if="$auth.loggedIn === false" class="link-1" to="/login-submit"><p>Connexion</p></nuxt-link>
+          <nuxt-link v-else class="link-1" to="/connected-section"><p>Tableau de Bord</p></nuxt-link>
         </p>
 				<p>Courses Chantier &copy; 2022</p>
 			</div>

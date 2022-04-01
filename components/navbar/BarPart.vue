@@ -389,4 +389,11 @@ h2{
     height: 50vmax;
   }
 }
+@media (max-width: 400px) {
+  .navbar .menu-items li {
+    margin-bottom: 2.5rem;
+    font-size: 5vw;
+    font-weight: 500;
+  }
+}
 </style>

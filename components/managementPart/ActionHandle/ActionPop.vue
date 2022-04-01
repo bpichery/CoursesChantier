@@ -11,8 +11,8 @@
         </div>
         <div v-else class="wrapperBt">
           <div class='last-bt'>
-            <button class='bt-list' @click='toPdf'>Télécharger la liste</button>
-            <button v-if='showButton === false' class='bt-list' @click='deleteList'>Supprimer la liste</button>
+            <button class='bt-list' @click='toPdf'>TÉLÉCHARGER</button>
+            <button v-if='showButton === false' class='bt-list' @click='deleteList'>SUPPRIMER</button>
           </div>
           <p class="close" @click="handleClose">FERMER</p>
         </div>
@@ -20,18 +20,18 @@
           <table id='pop' class="popTable">
             <thead>
               <tr>
-                <th>Quantité</th>
-                <th>Référence</th>
-                <th class="width">Nom</th>
-                <th>Description</th>
+                <th class='font'>Quantité</th>
+                <th class='font'>Référence</th>
+                <th class="width font">Nom</th>
+                <th class='font'>Description</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in listSelected.content" id="flex-list" :key="item.listId" class="border">
-                <td>{{item.quantity}}</td>
-                <td>{{item.content.reference}}</td>
-                <td class="width">{{item.content.designation}}</td>
-                <td>{{item.content.description}}</td>
+                <td class='font'>{{item.quantity}}</td>
+                <td class='font'>{{item.content.reference}}</td>
+                <td class="width font">{{item.content.designation}}</td>
+                <td class='font'>{{item.content.description}}</td>
               </tr>
             </tbody>
           </table>
@@ -129,6 +129,10 @@ table {
   text-align: center;
   }
 
+.displayNone{
+  display: none;
+}
+
 th {
   border-bottom: 1px solid #0000004b;
   color: #ff864e;
@@ -214,5 +218,10 @@ td{
   color: #fff;
   font-weight: 400;
   padding: 1px;
+}
+@media (max-width: 900px) {
+  .font{
+    font-size: 12px;
+	}
 }
 </style>

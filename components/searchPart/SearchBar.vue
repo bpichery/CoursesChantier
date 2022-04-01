@@ -94,7 +94,7 @@ a,a:visited {
   border: 1px solid #d3d3d3;
   padding: 5px;
   margin: 3%;
-  width:400px;
+  width: 250px;
   box-shadow:0 4px 9px rgba(0,0,0,.37);
   -moz-box-shadow:0 4px 9px rgba(0,0,0,.37);
   -webkit-box-shadow:0 4px 9px rgba(0,0,0,.37);
@@ -106,6 +106,7 @@ a,a:visited {
 .searchform input {
 	background:#fefefe;
 	border: none;
+  width: 147px;
 	font:12px/12px  'Oswald', sans-serif;
 	margin-right: 5px;
 	padding: 10px;
@@ -148,7 +149,7 @@ a,a:visited {
 	cursor: pointer;
 	font: 13px/13px  'Oswald', sans-serif;
 	padding: 12px;
-	width:110px;
+	width: 80px;
 	box-shadow: 0 0 2px #ff7e33 inset;
 	-moz-box-shadow: 0 0 2px #fc6b1d inset;
 	-webkit-box-shadow: 0 0 2px #ff760d inset;
@@ -159,15 +160,5 @@ a,a:visited {
 .searchform button:hover {
 	opacity:.9;
 }
-@media (max-width: 400px) {
-  .searchform input {
-  	min-width: 220px;
-  }
-}
-@media (min-width: 400px) {
-  .searchform input {
-  	min-width: 266px;
-    max-width: 273px;
-  }
- }
+
 </style>
