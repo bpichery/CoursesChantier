@@ -71,7 +71,7 @@ export default {
   },
   proxy: {
       '/api': {
-        target: 'http://backend-courseschantier.herokuapp.com/',
+        target: 'https://courses-chantier-backend.herokuapp.com',
         changeOrigin: true,
         pathRewrite: {'^/api': '/'},
       }
