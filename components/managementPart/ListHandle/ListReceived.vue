@@ -16,18 +16,16 @@
       <table class="popTable">
         <thead>
           <tr>
-            <th>Quantité</th>
-            <th class='displayNone'>Référence</th>
             <th>Nom</th>
             <th>Description</th>
+            <th>Qté</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in listSelected.content" id="flex-list" :key="item.content.designation" class="border">
-            <td>{{item.quantity}}</td>
-            <td class='displayNone'>{{item.content.reference}}</td>
             <td>{{item.content.designation}}</td>
             <td>{{item.content.description}}</td>
+            <td>{{item.quantity}}</td>
           </tr>
         </tbody>
       </table>
@@ -175,6 +173,7 @@ text-align: center;
 .flex{
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
 }
 
 .wait{

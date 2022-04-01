@@ -20,18 +20,16 @@
           <table id='pop' class="popTable">
             <thead>
               <tr>
-                <th class='font'>Quantité</th>
-                <th class='font'>Référence</th>
-                <th class="width font">Nom</th>
-                <th class='font'>Description</th>
+                <th class="width align font">Nom</th>
+                <th class='font align'>Référence</th>
+                <th class='font align'>Quantité</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in listSelected.content" id="flex-list" :key="item.listId" class="border">
-                <td class='font'>{{item.quantity}}</td>
-                <td class='font'>{{item.content.reference}}</td>
-                <td class="width font">{{item.content.designation}}</td>
-                <td class='font'>{{item.content.description}}</td>
+                <td class="width alignLeft font">{{item.content.designation}}</td>
+                <td class='minFont alignLeft'>{{item.content.reference}}</td>
+                <td class='font qt'>{{item.quantity}}</td>
               </tr>
             </tbody>
           </table>
@@ -128,11 +126,22 @@ table {
   font-family: 'Oswald', sans-serif;
   text-align: center;
   }
-
+.align{
+  text-align:center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.alignLeft{
+  text-align:center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .displayNone{
   display: none;
 }
-
+.qt{
+  width: 10px
+}
 th {
   border-bottom: 1px solid #0000004b;
   color: #ff864e;
@@ -222,6 +231,9 @@ td{
 @media (max-width: 900px) {
   .font{
     font-size: 12px;
+	}
+  .minFont{
+    font-size: 11px;
 	}
 }
 </style>
