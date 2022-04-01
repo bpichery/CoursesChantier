@@ -73,7 +73,7 @@ export default {
       '/api': {
         target: 'http://backend-courseschantier.herokuapp.com/',
         changeOrigin: true,
-        pathRewrite: { '^/api': '/' },
+        pathRewrite: {'^/api': '/'},
       }
     },
   // Build Configuration: https://go.nuxtjs.dev/config-build
