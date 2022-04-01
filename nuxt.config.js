@@ -70,9 +70,10 @@ export default {
     proxy: true,
   },
   proxy: {
-      '/': {
+      '/api': {
         target: 'https://courses-chantier-backend.herokuapp.com',
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: { '^/api': '/' },
       }
     },
   // Build Configuration: https://go.nuxtjs.dev/config-build
