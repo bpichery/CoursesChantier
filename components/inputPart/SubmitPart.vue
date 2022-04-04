@@ -4,21 +4,34 @@
     <form>
       <h3>Courses Chantier</h3>
       <label for="mail">Email</label>
-      <input id="username" v-model="userInfo.email" type="text" placeholder="exemple@exemple.com">
+      <input id="username" v-model.lazy="userInfo.email" type="text" placeholder="exemple@exemple.com">
       <label for="name">Pseudo</label>
-      <input id="username" v-model="userInfo.nickname" type="text" placeholder="MesCoursesChantiers">
+      <input id="username" v-model.lazy="userInfo.nickname" type="text" placeholder="MesCoursesChantiers">
       <label for="password">Mot de Passe</label>
-      <input id="password" v-model="userInfo.password" type="password" placeholder="*******">
+      <input id="password" v-model.lazy="userInfo.password" type="password" placeholder="*******">
       <label for="password">Mot de Passe</label>
-      <input id="password" v-model="userInfo.same_password" type="password" placeholder="*******">
+      <input id="password" v-model.lazy="userInfo.same_password" type="password" placeholder="*******">
       <button @click.prevent="submitRegister">Valider</button>
     </form>
 	</div>
 </template>
 <script>
+import * as EmailCheck from 'email-validator';
 export default{
   data(){
     return {
+      results:[],
+      filteredResult:[],
+      newUser:false,
+      messageEmail:'',
+      messagePassword:'',
+      messageNickname:'',
+      samePass: null,
+      passLength: null,
+      nickLength: null,
+      uniqueNickname: null,
+      uniqueEmail: null,
+      valideEmail: null,
       userInfo: {
         nickname:'',
         email: '',
@@ -26,21 +39,94 @@ export default{
         same_password:''
       }
     }
+  },computed:{
+  filteredNick(){ 
+    if(this.userInfo.nickname === ''){
+      return ''
+    }else{
+    return this.results.filter((post) => post.nickname.toLowerCase()===this.userInfo.nickname.toLowerCase()) } },
+      
+  filteredEmail(){
+      if(this.userInfo.email === ''){
+      return ''
+    }else{return this.results.filter((post) => post.email.toLowerCase()===this.userInfo.email.toLowerCase())}}
+  },
+  async created(){
+    this.samePass = false
+    this.valideEmail = false
+    this.uniqueNickname = false
+    this.uniqueEmail = false
+    this.results = await this.$axios.$get("/api/users")
   },
   methods: {
-    submitRegister () {
-      if (this.userInfo.password === this.userInfo.same_password) {
-        this.$axios.post('/api/register', {
+   checkData(){
+     if(this.userInfo.password === this.userInfo.same_password){
+       this.samePass = true
+     }
+     if(this.userInfo.password !== this.userInfo.same_password){
+       this.samePass = false
+       this.messagePassword = 'Les mots de passes sont invalides, merci de corriger! '
+     }
+     if(this.userInfo.password.length < 7){
+       this.passLength = false
+       this.messagePassword = 'Le mot de passe doit contenir au moins 7 charactères. '
+     }
+     if(this.userInfo.password.length >= 7){
+         this.passLength = true
+     }
+     if(this.userInfo.nickname.length < 5){
+       this.nickLength = false
+       this.messageNickname = 'Le pseudo doit contenir au moins 5 charactères. '
+     }
+     if(this.userInfo.nickname.length >= 5){
+         this.nickLength = true
+     }
+     if(this.userInfo.nickname !== ''){
+        if(this.filteredNick.length !== 0){
+         this.uniqueNickname = false
+          this.messageNickname = `Pseudo déjà utilisé, merci d'en choisir un autre! `
+        }else{
+          this.uniqueNickname = true
+        }
+      }
+      if(this.userInfo.email !== ''){
+        if(this.filteredEmail.length !== 0){
+          this.uniqueEmail = false
+          this.messageEmail = `Mail déjà utilisé, merci d'en choisir un autre! `
+          }
+          if(this.filteredEmail.length === 0){
+          this.uniqueEmail = true
+        }
+      }
+        if(EmailCheck.validate(this.userInfo.email)===true){
+            this.valideEmail = true
+            }
+        if(EmailCheck.validate(this.userInfo.email)===false){
+            this.valideEmail = false
+            this.messageEmail = 'Mail invalide ...'
+            }
+            if(this.uniqueEmail && this.valideEmail && this.passLength && this.nickLength && this.samePass && this.uniqueNickname){
+                this.newUser = true
+            }
+            else{
+                this.newUser = false
+            }
+      
+   },
+   submitRegister(){
+        this.checkData()
+       if(this.newUser === false){
+          alert(this.messageEmail + ' ' +this.messageNickname + ' ' + this.messagePassword)
+          window.location.reload()
+       }else{
+          this.$axios.post('/api/register', {
           nickname: this.userInfo.nickname,
           email: this.userInfo.email,
           password: this.userInfo.password
         }) 
-        .then(()=> alert(`Bienvenue ${this.userInfo.nickname} sur Courses Chantier, cliquez sur l'onglet connexion!`) )
-      }
-      else {
-        this.error = 'Le mot de passe ne correspond pas'
-      }
-    }
+        .then(()=> alert(`Bienvenue ${this.userInfo.nickname} sur Courses Chantier, cliquez sur l'onglet connexion!`) ).then(()=> window.location.reload())
+       }
+   }
   }
 }
 </script>
@@ -63,6 +149,15 @@ body{
   background-color: #080710;
 }
 
+.trueInput{
+  border: 2px solid green;
+}
+.falseInput{
+  border: 2px solid red;
+}
+.nullInput{
+  border-style: none;
+}
 .background{
   width: 430px;
   height: 520px;

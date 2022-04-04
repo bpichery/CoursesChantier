@@ -26,7 +26,7 @@ export default {
   components: {
     LoginPart, 
     SubmitPart
-  }
+  },
 }
 </script>
 <style scoped>

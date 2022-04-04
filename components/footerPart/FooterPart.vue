@@ -16,6 +16,10 @@
   </div>
 </template>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Oswald:wght@200;300;400;500&display=swap');
+body {
+  font-family: 'Oswald', sans-serif;
+}
 .logo{
   max-width: 10vw;
   margin-top: -35px;
@@ -38,7 +42,8 @@ section {
   box-sizing: border-box;
   width: 100%;
   text-align: left;
-  font: normal 16px sans-serif;
+  font: normal 16px;
+  font-family: 'Oswald', sans-serif;
   padding: 45px 50px;
 }
 

@@ -100,7 +100,7 @@ export default{
           this.$store.dispatch('list/clearActionPop')
           this.$store.dispatch('list/clearShowButton')
         })
-        .then(()=> alert(`Suppression de la liste ${this.listSelected.listName}!`) ).then(()=> window.location.reload())
+        .then(()=> alert(`Suppression de la liste ${this.listSelected.listName}!`) ).then(()=> window.location.ad())
     },
     handleStatus (element) {
       this.isValidated= true
@@ -138,6 +138,9 @@ table {
 }
 .displayNone{
   display: none;
+}
+.popTable{
+  margin: 0 auto;
 }
 .qt{
   width: 10px

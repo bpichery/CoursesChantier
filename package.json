@@ -19,6 +19,7 @@
     "@nuxtjs/proxy": "^2.1.0",
     "axios": "^0.26.1",
     "core-js": "^3.19.3",
+    "email-validator": "^2.0.4",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.23",
     "nuxt": "^2.15.8",
