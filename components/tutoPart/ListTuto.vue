@@ -2,19 +2,19 @@
     <ul class="tilesWrap">
 		<li>
 			<h2>01</h2>
-			<p>Créez-vous un compte dans l'onglet connexion</p>
+			<p>Créer-vous un compte dans l'onglet connexion!</p>
 		</li>
 		<li>
 			<h2>02</h2>
-			<p>Testez notre barre de recherche pour connaître nos références</p>
+			<p>Tester notre Tableau de Bord pour accéder à nos services</p>
 		</li>
 		<li>
 			<h2>03</h2>
-			<p>Créez votre liste et ajouter les éléments dont vous avez besoin</p>
+			<p>Créer votre liste et ajouter les éléments dont vous avez besoin. Envoyer celle-ci à l'utilisateur de votre choix</p>
 		</li>
 		<li>
 			<h2>04</h2>
-			<p>Envoyer la liste à l'utilisateur de votre choix</p>
+			<p>Gérer les listes envoyées ou reçues. Et découvrer nos autres fonctionnalités</p>
 		</li>
 	</ul>
 </template>
@@ -43,7 +43,7 @@ body {
 	min-height: 25vh;
 	background: #262a2b;
 	border: 1px solid #252727;
-	text-align: left;
+	text-align: justify;
 }
 
 .tilesWrap li h2 {
@@ -115,7 +115,7 @@ body {
 
 .tilesWrap li:hover h2 {
 	top: 0px;
-	opacity: 0.6;
+	opacity: 1;
 }
 
 .tilesWrap li:before {
@@ -141,19 +141,19 @@ body {
 }
 
 .tilesWrap li:nth-child(1):before {
-background: linear-gradient(to right, #eb5d0a, #e6e6e6);
+background: linear-gradient(to right, #eb4e0a, #e6e6e6);
 }
 
 .tilesWrap li:nth-child(2):before {
-background: linear-gradient(to right, #eb5d0a, #e6e6e6);
+background: linear-gradient(to right, #eb4e0a, #e6e6e6);
 }
 
 .tilesWrap li:nth-child(3):before {
-background: linear-gradient(to right, #eb5d0a, #e6e6e6);
+background: linear-gradient(to right, #eb4e0a, #e6e6e6);
 }
 
 .tilesWrap li:nth-child(4):before {
-background: linear-gradient(to right, #eb5d0a, #e6e6e6);
+background: linear-gradient(to right, #eb4e0a, #e6e6e6);
 }
 
 </style>

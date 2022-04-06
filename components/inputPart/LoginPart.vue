@@ -15,6 +15,7 @@
 
 import * as EmailCheck from 'email-validator';
 export default{
+  
   data(){
     return {
       isErr: false,
@@ -24,7 +25,6 @@ export default{
       }
     }
   },
-  
   methods: {
     waitBeforeReload(){
       setTimeout(function () {
@@ -35,19 +35,13 @@ export default{
       if(this.userInfo.password === ''){
         alert(`Merci d'inscrire un mot de passe`)
       }
-      else if(EmailCheck.validate(this.userInfo.email)){
-      const log = this.userInfo
-      this.$auth.loginWith('local', {data:log}).then(()=> this.$router.push('/connected-section')).catch((error)=> alert(`erreur` + ' ' + error.response.status  + '!' + ' Merci de vérifier votre email et votre mot de passe'),
-      this.isErr= true,
-      this.waitBeforeReload()
-      )
-      if(this.isErr === false){
-      this.$router.push('/connected-section')
-      }
-      }
       else if(EmailCheck.validate(this.userInfo.email) === false){
          alert(`Merci d'inscrire un email valide`)
-      
+      }
+      else if(EmailCheck.validate(this.userInfo.email)){
+      const log = this.userInfo
+      this.$auth.loginWith('local', {data:log}).catch((error)=>  alert(`erreur` + ' ' + error.response.status  + '!' + ' Merci de vérifier votre email et votre mot de passe'))
+     	
       }
     }
   }

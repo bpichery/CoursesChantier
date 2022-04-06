@@ -78,6 +78,7 @@ export default {
             this.checkData()
             if(this.tool.reference ==='' || this.tool.designation ===''){
                 alert(`Merci de remplir les champs de référence ainsi que d'indiquer la désignation`)
+                window.location.reload()
             }
             else if (this.isOkay === true){
                 this.$axios.post('/api/tool/', {
@@ -100,6 +101,7 @@ export default {
                 }
                 else{
                     alert('Pas de référence retrouvée')
+                    window.location.reload()
                 }
             }
         },
@@ -117,7 +119,7 @@ export default {
                 }
             }
         },
-        checkData () {
+        'checkData' () {
             if (this.tool.reference !== '') {
                 const ref = this.results.filter((post) =>
                 post.reference.toLowerCase().includes(this.tool.reference.toLowerCase()))
