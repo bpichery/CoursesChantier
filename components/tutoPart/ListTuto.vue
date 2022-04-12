@@ -2,19 +2,19 @@
     <ul class="tilesWrap">
 		<li>
 			<h2>01</h2>
-			<p>Créer-vous un compte dans l'onglet connexion!</p>
+			<p>Créez-vous un compte dans l'onglet connexion!</p>
 		</li>
 		<li>
 			<h2>02</h2>
-			<p>Tester notre Tableau de Bord pour accéder à nos services</p>
+			<p>Testez notre Tableau de Bord pour accéder à nos services</p>
 		</li>
 		<li>
 			<h2>03</h2>
-			<p>Créer votre liste et ajouter les éléments dont vous avez besoin. Envoyer celle-ci à l'utilisateur de votre choix</p>
+			<p>Créez votre liste et ajouter les éléments dont vous avez besoin. Envoyez celle-ci à l'utilisateur de votre choix</p>
 		</li>
 		<li>
 			<h2>04</h2>
-			<p>Gérer les listes envoyées ou reçues. Et découvrer nos autres fonctionnalités</p>
+			<p>Gérez les listes envoyées ou reçues. Et découvrez nos autres fonctionnalités</p>
 		</li>
 	</ul>
 </template>
