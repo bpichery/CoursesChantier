@@ -3,14 +3,22 @@
 		<div class="background"/>
     <form>
       <h3>Courses Chantier</h3>
+      <div class='centered'>
       <label for="mail">Email</label>
       <input id="username" v-model.lazy="userInfo.email" type="text" placeholder="exemple@exemple.com">
+      </div>
+      <div class='centered'>
       <label for="name">Pseudo</label>
       <input id="username" v-model.lazy="userInfo.nickname" type="text" placeholder="MesCoursesChantiers">
+      </div>
+      <div class='centered'>
       <label for="password">Mot de Passe</label>
       <input id="password" v-model.lazy="userInfo.password" type="password" placeholder="*******">
+      </div>
+      <div class='centered'>
       <label for="password">Mot de Passe</label>
       <input id="password" v-model.lazy="userInfo.same_password" type="password" placeholder="*******">
+      </div>
       <button @click.prevent="submitRegister">Valider</button>
     </form>
 	</div>
@@ -184,6 +192,9 @@ form{
   border-radius: 10px;
   backdrop-filter: blur(10px);
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form *{
@@ -192,6 +203,7 @@ form *{
   letter-spacing: 0.5px;
   outline: none;
   border: none;
+  
 }
 
 form h3{
@@ -211,7 +223,6 @@ label{
 input{
   display: block;
   height: 30px;
-  width: 100%;
   background-color: rgba(255, 255, 255, 0.296);
   border-radius: 3px;
   padding: 0 10px;
@@ -226,8 +237,7 @@ input{
 }
 
 button{
-  margin-top: 25px;
-  width: 100%;
+  margin: 25px auto 0 auto;
   background-color: #ffffff;
   color: #080710;
   padding: 5px 0;
@@ -235,6 +245,7 @@ button{
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .social{

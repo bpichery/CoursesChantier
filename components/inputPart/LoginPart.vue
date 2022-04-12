@@ -3,10 +3,14 @@
 		<div class="background"/>
     <form class="formPart">
       <p>Courses Chantier</p>
+      <div class='centered'>
       <label for="mail">Email</label>
       <input id="username" v-model="userInfo.email" type="text" placeholder="exemple@exemple.com">
+      </div>
+      <div class='centered'>
       <label for="password">Mot de Passe</label>
       <input id="password" v-model="userInfo.password"  type="password" placeholder="*******">
+      </div>
       <button @click.prevent="submitLogin">Valider</button>
     </form>
   </div>
@@ -90,6 +94,9 @@ body{
   border-radius: 10px;
   backdrop-filter: blur(10px);
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .formPart *{
@@ -116,7 +123,6 @@ label{
 input{
     display: block;
     height: 30px;
-    width: 100%;
     background-color: rgba(255, 255, 255, 0.296);
     border-radius: 3px;
     padding: 0 10px;
@@ -131,8 +137,7 @@ input{
 }
 
 button{
-    margin-top: 43px;
-    width: 100%;
+    margin: 43px auto 0 auto;
     background-color: #ffffff;
     color: #080710;
     padding: 5px 0;
@@ -140,6 +145,7 @@ button{
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+    padding: 5px;
 }
 
 .social{
