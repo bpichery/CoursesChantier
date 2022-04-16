@@ -22,6 +22,3 @@
 - Maquettage sur Figma - Authentification avec json web token  
 
 <br />
-
-----
-<div align="center">Generated using <a href="https://profilinator.rishav.dev/" target="_blank">Github Profilinator</a></div>
