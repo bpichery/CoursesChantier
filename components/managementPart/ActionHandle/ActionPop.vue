@@ -108,7 +108,7 @@ export default{
         status: element
       }) 
       .then(()=>
-        alert(`Changement de status vers ${element}!`) ).then(()=> window.location.reload())
+        alert(`Changement de statut vers ${element}!`) ).then(()=> window.location.reload())
     }
   }
 }

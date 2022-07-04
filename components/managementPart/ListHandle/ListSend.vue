@@ -10,7 +10,7 @@
           <p><span class='bold'>Date: </span>{{handleDate(listSelected.created)}}</p>
         </div>
         <div class='flex'>
-          <p><span class='bold'>Status: </span>{{listSelected.status.toUpperCase()}}</p>
+          <p><span class='bold'>Statut: </span>{{listSelected.status.toUpperCase()}}</p>
           <p v-if="listSelected.message !== ''"><span class='bold'>Message: </span>{{listSelected.message}}</p>
         </div>
         <table>
@@ -39,7 +39,7 @@
             <th>Nom</th>
             <th>Destinataire</th>
             <th class='none'>Date</th>
-            <th class='none'>Status</th>
+            <th class='none'>Statut</th>
             <th>Détails</th>
             <th>Actions</th>
           </tr>
